@@ -1,7 +1,11 @@
 def is_valid_parentheses(s: str) -> bool:
-    """
-    Return True if the string contains valid, balanced parentheses.
-    Only (), {}, and [] are considered valid.
-    """
-    # TODO: Implement stack logic to validate parentheses
-    pass
+    bracket_map = {')': '(', '}': '{', ']': '['}
+    stack = []
+
+    for char in s:
+        if char in bracket_map.values():
+            stack.append(char)
+        elif char in bracket_map.keys():
+            if not stack or stack.pop() != bracket_map[char]:
+                return False
+    return len(stack) == 0
